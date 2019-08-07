@@ -80,6 +80,14 @@ class MongoCollectionTest extends TestCase
         $this->assertSame(1, $this->getCollection()->count(['_id' => $document['_id']]));
     }
 
+    public function testInsertArrayWithZeroId()
+    {
+        $document = ['_id' => '0'];
+        $this->getCollection()->insert($document);
+
+        $this->assertSame(1, $this->getCollection()->count(['_id' => $document['_id']]));
+    }
+
     public function testInsertEmptyObject()
     {
         $document = (object) [];
